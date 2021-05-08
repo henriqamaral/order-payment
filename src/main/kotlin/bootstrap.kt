@@ -2,7 +2,6 @@ import com.sacredit.customer.Address
 import com.sacredit.customer.Customer
 import com.sacredit.order.Order
 import com.sacredit.payment.CreditCard
-import com.sacredit.product.Product
 import com.sacredit.product.ProductFactory
 import com.sacredit.product.ProductType
 
@@ -13,7 +12,7 @@ fun main(args : Array<String>) {
     val book = ProductFactory.createProduct("The Hitchhiker's Guide to the Galaxy", ProductType.BOOK, 120.00)
     val music = ProductFactory.createProduct("Stairway to Heaven", ProductType.DIGITAL, 5.00)
 
-    val order = Order(Customer("Sherlock"), Address("Baker Street"))
+    val order = Order(Customer("Sherlock", "holme@holmes.com"), Address("Baker Street"))
 
     order.addProduct(shirt, 2)
     order.addProduct(netflix, 1)

@@ -11,8 +11,8 @@ class ShippingFactory {
       when (productType) {
         ProductType.PHYSICAL -> PhysicalShipping(customer, address)
         ProductType.BOOK -> NoTaxShipping(customer, address)
-        ProductType.MEMBERSHIP -> SubscriptionShipping()
-        ProductType.DIGITAL -> DigitalShipping()
+        ProductType.MEMBERSHIP -> SubscriptionShipping(customer)
+        ProductType.DIGITAL -> DigitalShipping(customer)
       }
   }
 }

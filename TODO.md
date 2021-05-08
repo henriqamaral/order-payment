@@ -3,4 +3,5 @@
 - Create a Product Factory, for shipping in the future
 - Create Shipping Abstract class for different shipping types
 - Implemented Physical Shipping
+- Add Notification Types  
 - Remove Invoice from Payment, whe should generate invoice after the payment, But I think Order has an Invoice
