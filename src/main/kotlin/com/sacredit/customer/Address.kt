@@ -1,3 +1,3 @@
 package com.sacredit.customer
 
-class Address
+class Address(val street: String)

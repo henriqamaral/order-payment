@@ -1,3 +1,3 @@
 package com.sacredit.customer
 
-class Customer
+class Customer(val name : String)

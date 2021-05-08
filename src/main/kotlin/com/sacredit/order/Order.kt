@@ -5,9 +5,12 @@ import com.sacredit.customer.Customer
 import com.sacredit.payment.Payment
 import com.sacredit.payment.PaymentMethod
 import com.sacredit.product.Product
+import com.sacredit.shipping.Shipping
+import com.sacredit.shipping.ShippingFactory
 import java.util.*
 
 class Order(val customer: Customer, val address: Address) {
+
     val items = mutableListOf<OrderItem>()
     var closedAt: Date? = null
         private set
@@ -15,9 +18,11 @@ class Order(val customer: Customer, val address: Address) {
         private set
     val totalAmount
         get() = items.sumByDouble { it.total }
+    var shippings: List<Shipping>? = null
+        private set
 
     fun addProduct(product: Product, quantity: Int) {
-        var productAlreadyAdded = items.any { it.product == product }
+        val productAlreadyAdded = items.any { it.product == product }
         if (productAlreadyAdded)
             throw Exception("The product have already been added. Change the amount if you want more.")
 
@@ -38,5 +43,17 @@ class Order(val customer: Customer, val address: Address) {
 
     private fun close() {
         closedAt = Date()
+    }
+
+    fun ship() {
+
+        if (payment == null)
+            throw Exception("No payment found")
+
+        shippings = items.map {
+            val shipping = ShippingFactory.createShipping(it.product.type, customer, address)
+            shipping.ship()
+            shipping
+        }
     }
 }
