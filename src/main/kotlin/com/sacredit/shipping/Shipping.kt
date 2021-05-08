@@ -3,12 +3,11 @@ package com.sacredit.shipping
 abstract class Shipping {
 
   var shipped = false
-  var label: String? = null
-
-  abstract fun generateShip()
 
   fun ship() {
-    generateShip()
+    if(shipped) {
+      throw Exception("Item(s) already shipped")
+    }
     shipped = true
   }
 }

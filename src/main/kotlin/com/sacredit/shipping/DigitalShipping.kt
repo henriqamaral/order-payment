@@ -1,9 +1,31 @@
 package com.sacredit.shipping
 
-import com.sacredit.customer.Customer
-import com.sacredit.notification.Notification
+import com.sacredit.order.Order
+import com.sacredit.order.OrderItem
+import com.sacredit.product.ProductType
 
-class DigitalShipping(customer: Customer) : SubscriptionShipping(customer) {
+open class DigitalShipping(
+  private val order: Order,
+  private val shippingItems: List<OrderItem>
+) : Shipping() {
 
-  override var notification = Notification(customer.email, "Here are your download link\nAnd a voucher of 10% for you next buy")
+  val email = order.customer.email
+  val message =
+    shippingItems.joinToString("\n") {
+      generateNotificationMessage(
+        it.product.type,
+        it.product.name
+      )
+    } + if (shippingItems.any { it.product.type == ProductType.DIGITAL }) "\nHere a voucher of 10% for your next buy: VOUCHER_CODE" else ""
+
+
+  private fun generateNotificationMessage(productType: ProductType, productName: String): String {
+    return when (productType) {
+      ProductType.MEMBERSHIP -> "Here are you subscription data of the service: $productName"
+      ProductType.DIGITAL -> "Here are your download link for: $productName"
+      else -> throw Exception("Wrong product type")
+    }
+
+  }
+
 }

@@ -41,7 +41,7 @@ class BootstrapTest {
   }
 
   @Test
-  fun `when adding different physical products should generate different shipping labels`() {
+  fun `when adding different physical products should generate one shipping`() {
 
     //given
     val order = Order(customer, Address("Baker Street"))
@@ -56,20 +56,21 @@ class BootstrapTest {
     order.pay(CreditCard("43567890-987654367"))
 
     //then
-    order.ship()
+    val shipping = order.getShipping()
 
-    assertThat(order.shippings?.size).isEqualTo(2)
-    assertThat(order.shippings)
-      .hasSize(2)
-      .extracting("label")
+    assertThat(shipping)
+      .hasSize(1)
+      .extracting("shippingLabel")
       .contains(
-        "Sherlock\nBaker Street",
-        "Sherlock\nBaker Street\nThe item(s) is/are tax-exempt"
+            "Sherlock\n" +
+            "Baker Street\n" +
+            "Product 2\n" +
+            "Product 1 - The item is tax-exempt"
       )
   }
 
   @Test
-  fun `when adding different virtual products should generate different shipping labels`() {
+  fun `when adding different digital products should generate different one shipping`() {
 
     //given
     val order = Order(customer, Address("Baker Street"))
@@ -83,13 +84,60 @@ class BootstrapTest {
     order.pay(CreditCard("43567890-987654367"))
 
     //then
-    order.ship()
+    val shipping = order.getShipping()
 
-    assertThat(order.shippings)
+    assertThat(shipping)
+      .hasSize(1)
+      .extracting("email", "message")
+      .contains(
+        Assertions.tuple(
+          "holme@holmes.com", "Here are you subscription data of the service: Product 1\n" +
+              "Here are your download link for: Product 2\n" +
+              "Here a voucher of 10% for your next buy: VOUCHER_CODE"
+        )
+      )
+  }
+
+  @Test
+  fun `when adding digital and physical products should generate two shipping`() {
+
+    //given
+    val order = Order(customer, Address("Baker Street"))
+
+    val netflix = ProductFactory.createProduct("Product 1", ProductType.MEMBERSHIP, 10.00)
+    val book = ProductFactory.createProduct("Product 2", ProductType.BOOK, 5.00)
+
+    order.addProduct(netflix, 1)
+    order.addProduct(book, 1)
+
+    //when
+    order.pay(CreditCard("43567890-987654367"))
+
+    //then
+    val shipping = order.getShipping()
+
+    assertThat(shipping)
       .hasSize(2)
-      .extracting("notification.email", "notification.message")
-      .contains(Assertions.tuple("holme@holmes.com", "Here are you subscription data"),
-        Assertions.tuple("holme@holmes.com", "Here are your download link\nAnd a voucher of 10% for you next buy"))
+  }
 
+  @Test
+  fun `when order payed generate invoice`() {
+
+    //given
+    val order = Order(customer, Address("Baker Street"))
+
+    val book = ProductFactory.createProduct("Product 1", ProductType.BOOK, 11.00)
+    val shirt = ProductFactory.createProduct("Product 2", ProductType.PHYSICAL, 12.00)
+
+    order.addProduct(shirt, 1)
+    order.addProduct(book, 1)
+    order.pay(CreditCard("43567890-987654367"))
+
+    //when
+    order.invoice()
+
+    //then
+    assertThat(order.invoice).isNotNull
+    assertThat(order.invoice?.shipping).hasSize(1)
   }
 }
