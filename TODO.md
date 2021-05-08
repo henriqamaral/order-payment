@@ -1,0 +1,3 @@
+- Move classes to different packages
+- Run and fix tests
+- Create a Product Factory, for shipping in the future

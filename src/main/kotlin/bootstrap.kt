@@ -3,13 +3,15 @@ import com.sacredit.customer.Customer
 import com.sacredit.order.Order
 import com.sacredit.payment.CreditCard
 import com.sacredit.product.Product
+import com.sacredit.product.ProductFactory
 import com.sacredit.product.ProductType
 
 fun main(args : Array<String>) {
-    val shirt = Product("Flowered t-shirt", ProductType.PHYSICAL, 35.00)
-    val netflix = Product("Familiar plan", ProductType.MEMBERSHIP, 29.90)
-    val book = Product("The Hitchhiker's Guide to the Galaxy", ProductType.BOOK, 120.00)
-    val music = Product("Stairway to Heaven", ProductType.DIGITAL, 5.00)
+
+    val shirt = ProductFactory.createProduct("Flowered t-shirt", ProductType.PHYSICAL, 35.00)
+    val netflix = ProductFactory.createProduct("Familiar plan", ProductType.MEMBERSHIP, 29.90)
+    val book = ProductFactory.createProduct("The Hitchhiker's Guide to the Galaxy", ProductType.BOOK, 120.00)
+    val music = ProductFactory.createProduct("Stairway to Heaven", ProductType.DIGITAL, 5.00)
 
     val order = Order(Customer(), Address())
 
