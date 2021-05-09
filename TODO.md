@@ -6,3 +6,4 @@
 - Add Notification Types  
 - Extract invoice from Payment  
 - ReFactory the code, improve shipping generation 
+- Send ship notifications

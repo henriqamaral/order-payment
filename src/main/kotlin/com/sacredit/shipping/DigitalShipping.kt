@@ -1,11 +1,13 @@
 package com.sacredit.shipping
 
+import com.sacredit.notification.Notification
 import com.sacredit.order.Order
 import com.sacredit.order.OrderItem
 import com.sacredit.product.ProductType
+import com.sacredit.subscription.Subscribe
 
-open class DigitalShipping(
-  private val order: Order,
+class DigitalShipping(
+  order: Order,
   private val shippingItems: List<OrderItem>
 ) : Shipping() {
 
@@ -26,6 +28,17 @@ open class DigitalShipping(
       else -> throw Exception("Wrong product type")
     }
 
+  }
+
+  override fun shipItem() {
+    shippingItems
+      .filter { it.getProductType() == ProductType.MEMBERSHIP }
+      .forEach { subscribe(it) }
+    Notification(email, message).send()
+  }
+
+  private fun subscribe(orderItem: OrderItem){
+    Subscribe(orderItem.product.name, email)
   }
 
 }

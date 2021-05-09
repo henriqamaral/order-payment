@@ -8,6 +8,9 @@ abstract class Shipping {
     if(shipped) {
       throw Exception("Item(s) already shipped")
     }
+    shipItem()
     shipped = true
   }
+
+  abstract fun shipItem()
 }

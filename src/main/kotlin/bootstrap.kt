@@ -20,6 +20,8 @@ fun main(args : Array<String>) {
     order.addProduct(music, 1)
 
     order.pay(CreditCard("43567890-987654367"))
-    // now, how to deal with shipping rules then?
+
     order.invoice()
+
+    order.ship()
 }

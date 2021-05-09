@@ -54,14 +54,11 @@ class Order(val customer: Customer, val address: Address) {
 
     fun ship() {
 
-        if (payment == null)
-            throw Exception("No payment found")
+      if (payment == null)
+        throw Exception("No payment found")
 
-//        shippings = items.map {
-//            val shipping = ShippingFactory.createShipping(it.product.type, customer, address)
-//            shipping.ship()
-//            shipping
-//        }
+      getShipping()
+        .forEach { it.ship() }
     }
 
     fun getShipping(): List<Shipping> {

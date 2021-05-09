@@ -5,7 +5,7 @@ import com.sacredit.order.OrderItem
 import com.sacredit.product.ProductType
 import java.lang.Exception
 
-class PhysicalShipping(private val order: Order, private val shippingItems: List<OrderItem>) :
+class PhysicalShipping(order: Order, shippingItems: List<OrderItem>) :
   Shipping() {
 
   val shippingLabel = "${order.customer.name}\n" +
@@ -19,5 +19,9 @@ class PhysicalShipping(private val order: Order, private val shippingItems: List
       ProductType.PHYSICAL -> productName
       else -> throw Exception("Wrong product type")
     }
+  }
+
+  override fun shipItem() {
+    println("Products Shipped")
   }
 }
