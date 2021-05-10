@@ -7,3 +7,4 @@
 - Extract invoice from Payment  
 - ReFactory the code, improve shipping generation 
 - Send ship notifications
+- Add Store control

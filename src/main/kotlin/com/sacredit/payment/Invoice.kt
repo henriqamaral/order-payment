@@ -2,9 +2,6 @@ package com.sacredit.payment
 
 import com.sacredit.customer.Address
 import com.sacredit.order.Order
-import com.sacredit.shipping.PhysicalShipping
-import com.sacredit.shipping.Shipping
-import com.sacredit.shipping.ShippingFactory
 
 data class Invoice(val order: Order) {
 

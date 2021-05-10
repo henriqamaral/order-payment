@@ -23,9 +23,6 @@ class Order(val customer: Customer, val address: Address) {
     val totalAmount
         get() = items.sumByDouble { it.total }
 
-    var shippings: List<Shipping>? = null
-        private set
-
     var invoice: Invoice? = null
 
     fun addProduct(product: Product, quantity: Int) {
