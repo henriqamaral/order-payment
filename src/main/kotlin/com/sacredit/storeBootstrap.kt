@@ -1,8 +1,10 @@
+package com.sacredit
+
 import com.sacredit.screen.EnterStoreScreen
 import com.sacredit.screen.Screen
 import java.util.*
 
-fun main(args: Array<String>) {
+fun main() {
 
   val scanner = Scanner(System.`in`)
   var currentScreen: Screen = EnterStoreScreen()

@@ -1,3 +1,5 @@
+package com.sacredit
+
 import com.sacredit.customer.Address
 import com.sacredit.customer.Customer
 import com.sacredit.order.Order
@@ -5,7 +7,7 @@ import com.sacredit.payment.CreditCard
 import com.sacredit.product.ProductFactory
 import com.sacredit.product.ProductType
 
-fun main(args: Array<String>) {
+fun main() {
 
   val shirt = ProductFactory.createProduct("Flowered t-shirt", ProductType.PHYSICAL, 35.00)
   val netflix = ProductFactory.createProduct("Familiar plan", ProductType.MEMBERSHIP, 29.90)

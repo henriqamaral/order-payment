@@ -8,3 +8,5 @@
 - ReFactory the code, improve shipping generation 
 - Send ship notifications
 - Add Store control
+- Upgrade gradle version
+- Migrate to kotlin gradle

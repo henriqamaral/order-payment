@@ -21,7 +21,7 @@ class Order(val customer: Customer, val address: Address) {
     var payment: Payment? = null
         private set
     val totalAmount
-        get() = items.sumByDouble { it.total }
+        get() = items.sumOf { it.total }
 
     var invoice: Invoice? = null
 

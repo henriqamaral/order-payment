@@ -33,7 +33,7 @@ class OrderScreen : Screen() {
 
     println("""
       ################################
-      Total: ${Store.basket.sumByDouble { it.total }}
+      Total: ${Store.basket.sumOf { it.total }}
       ################################
       """)
 

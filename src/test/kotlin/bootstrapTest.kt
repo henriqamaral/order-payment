@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test
 
 class BootstrapTest {
 
-  val customer = Customer("Sherlock", "holme@holmes.com")
+  private val customer = Customer("Sherlock", "holme@holmes.com")
 
   @Test
   fun `when adding product to order`() {
