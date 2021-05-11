@@ -10,3 +10,5 @@
 - Add Store control
 - Upgrade gradle version
 - Migrate to kotlin gradle
+- Add README
+- Fix read line in Store Bootstrap

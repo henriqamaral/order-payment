@@ -4,7 +4,7 @@ plugins {
 }
 
 application {
-  mainClass.set("com.sacredit.bootstrap")
+  mainClass.set("com.sacredit.BootstrapKt")
 }
 
 group = "com.creditas"
@@ -32,4 +32,10 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
   kotlinOptions {
     jvmTarget = "1.8"
   }
+}
+
+task("storeBootstrap", JavaExec::class) {
+  standardInput = System.`in`
+  main = "com.sacredit.StoreBootstrapKt"
+  classpath = sourceSets["main"].runtimeClasspath
 }
