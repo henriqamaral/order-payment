@@ -1,5 +1,7 @@
 package com.sacredit.screen
 
+import com.sacredit.Store
+
 
 class EnterStoreScreen : Screen() {
 
@@ -21,13 +23,21 @@ class EnterStoreScreen : Screen() {
       "1" ->  ProductsScreen()
       "2" ->  BasketScreen()
       "99" -> ExitScreen()
+      "90" -> logout()
       else -> this
     }
+  }
+  private fun logout(): Screen {
+    Store.currentUser = null
+    return this
   }
 
   private fun printCommands() {
     println("1  - Show Products")
     println("2  - Show Basket")
+    Store.currentUser?.let {
+      println("90  - Logout")
+    }
     println("99 - Exit")
   }
 

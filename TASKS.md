@@ -13,3 +13,4 @@
 - Add README
 - Fix read line in Store Bootstrap
 - Add Customer Creation
+- Add Logout on Initial Screen
