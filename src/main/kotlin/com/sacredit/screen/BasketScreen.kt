@@ -27,11 +27,17 @@ class BasketScreen : Screen() {
   }
 
   private fun payScreen() : Screen {
-    return if(Store.basket.isNotEmpty()) {
-      return OrderScreen()
-    } else {
-      println("Basket is empty")
-      this
+    return when {
+      Store.currentUser == null -> {
+        return LoginScreen()
+      }
+      Store.basket.isNotEmpty() -> {
+        return OrderScreen()
+      }
+      else -> {
+        println("Basket is empty")
+        this
+      }
     }
   }
 

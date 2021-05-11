@@ -3,7 +3,9 @@ package com.sacredit.screen
 import com.sacredit.Store
 import com.sacredit.customer.Address
 import com.sacredit.customer.Customer
+import com.sacredit.database.AddressDB
 import com.sacredit.database.OrdersDB
+import com.sacredit.database.UsersDB
 import com.sacredit.order.Order
 import com.sacredit.payment.CreditCard
 
@@ -40,7 +42,9 @@ class PaymentScreen : Screen() {
   }
 
   private fun processOrder(input: String) {
-    val order = Order(Customer("Sherlock Holmes", "email@email.com"), Address("Baker Street"))
+    val customer = UsersDB.users[Store.currentUser]
+    val address = AddressDB.addresses[Store.currentUser]
+    val order = Order(customer!!, address!!)
     order.items.addAll(Store.basket)
     order.pay(CreditCard(input))
     order.ship()

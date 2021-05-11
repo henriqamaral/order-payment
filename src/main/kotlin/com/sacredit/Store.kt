@@ -8,6 +8,7 @@ class Store {
 
   companion object {
     val basket = mutableListOf<OrderItem>()
+    var currentUser : String? = null
     var currentOrder : Order? = null
   }
 }

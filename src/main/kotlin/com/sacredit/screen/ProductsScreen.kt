@@ -10,7 +10,7 @@ class ProductsScreen : Screen() {
   override fun init(oldScreen: Screen?) {
     if(oldScreen != this) {
       println("To pick a product type its key: P2 and quantity by underscore: Ex:")
-      println("P1_2")
+      println("P1 2")
       println("Or type a different option\n")
 
       printProducts()
@@ -19,7 +19,7 @@ class ProductsScreen : Screen() {
 
   override fun executeInput(input: String): Screen {
 
-    val inputSplit = input.split("_")
+    val inputSplit = input.split(" ")
 
     return if(inputSplit.size == 2) {
       addProductToBasket(inputSplit[0], inputSplit[1])

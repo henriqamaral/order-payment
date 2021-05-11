@@ -12,3 +12,4 @@
 - Migrate to kotlin gradle
 - Add README
 - Fix read line in Store Bootstrap
+- Add Customer Creation

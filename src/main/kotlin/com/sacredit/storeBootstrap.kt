@@ -12,7 +12,7 @@ fun main() {
 
   while (scanner.hasNext()) {
     val oldScreen = currentScreen
-    currentScreen = currentScreen.executeInput(scanner.next())
+    currentScreen = currentScreen.executeInput(scanner.nextLine())
     currentScreen.init(oldScreen)
   }
 }
