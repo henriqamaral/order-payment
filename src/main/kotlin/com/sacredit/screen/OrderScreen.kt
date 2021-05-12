@@ -5,7 +5,7 @@ import com.sacredit.Store
 class OrderScreen : Screen() {
 
   override fun init(oldScreen: Screen?) {
-    printOderDetails()
+    printOrderDetails()
   }
 
   override fun executeInput(input: String): Screen {
@@ -19,7 +19,7 @@ class OrderScreen : Screen() {
     }
   }
 
-  private fun printOderDetails() {
+  private fun printOrderDetails() {
 
     println("""
       ################################
